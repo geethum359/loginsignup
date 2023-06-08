@@ -20,6 +20,7 @@ def signup1(request):
             form.save()
             return home(request)
     return render(request,'signup1.html',{"form":form})
+
 def user_login1(request):
     if(request.method=="POST"):
         name = request.POST['n']
@@ -31,12 +32,15 @@ def user_login1(request):
         else:
             return HttpResponse('invalid ... no user found')
     return render(request,'login1.html')
+
 def user_logout1(request):
     logout(request)
     return user_login1(request)
+
 def view(request):
     v=employee.objects.all()
     return render(request,'view.html',{"s":v})
+
 def  addform(request):
     form=employeeForm()
     if request.method=='POST':
@@ -45,6 +49,7 @@ def  addform(request):
             form.save()
             return view(request)
     return render(request,'addform.html',{'form':form})
+
 def delete_emp(request,p):
     s=employee.objects.get(pk=p)
     s.delete()
